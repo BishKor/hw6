@@ -13,7 +13,7 @@ cmaxy = [np.mean(i[1:13]) for i in cmax]
 cminy = [np.mean(i[1:13]) for i in cmin]
 
 bcmax = [np.mean(cmaxy[i:i+5]) for i in range(len(cmaxy)-5)]
-bcmin = [np.mean(cminy[i:i+5]) for i in range(len(cmaxy)-5)]
+bcmin = [np.mean(cminy[i:i+5]) for i in range(len(cminy)-5)]
 
 gkmax = np.convolve(cmaxy, ggk(1.5, 7), 'valid')
 gkmin = np.convolve(cminy, ggk(1.5, 7), 'valid')

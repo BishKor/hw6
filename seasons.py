@@ -34,10 +34,6 @@ optsummin = [bcsummin[i] - oblsm[1] for i in range(len(bcsummin))]
 optwinmax = [bcwinmax[i] - oblwx[1] for i in range(len(bcwinmax))]
 optwinmin = [bcwinmin[i] - oblwm[1] for i in range(len(bcwinmin))]
 
-
-print len([i for i in range(1882, 2015)])
-print len(optwinmax)
-
 osx, = plt.plot([i for i in range(1882, 2015)], optsummax, label="Summer Max temps")
 osm, = plt.plot([i for i in range(1882, 2015)], optsummin, label="Summer Min temps")
 wsx, = plt.plot([i for i in range(1882, 2014)], optwinmax, label="Winter Max temps")
