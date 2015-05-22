@@ -23,5 +23,4 @@ def optimalaverageanomoly(array, minlength):
             standard = data[i][0]
             optimal = data[i]
 
-    print optimal
     return optimal
