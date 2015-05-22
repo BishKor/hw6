@@ -21,15 +21,18 @@ gkmin = np.convolve(cminy, ggk(1.5, 7), 'valid')
 exsmmax = exsmoo(cmaxy, .5)
 exsmmin = exsmoo(cminy, .5)
 
-# opt = optav(bcmax, 30)
+optimalbaselinemax = optav(bcmax, 30)
+optimalbaselinemin = optav(bcmin, 30)
 
-baseline = np.mean([cmaxy[i] for i in range(90, 120)])
-blmax = [i - baseline for i in cmaxy]
-blbcmax = [i - baseline for i in bcmax]
-blgsmax = [i - baseline for i in gkmax]
-blexmax = [i - baseline for i in exsmmax]
+# baseline = np.mean([cmaxy[i] for i in range(90, 120)])
+# blmax = [i - baseline for i in cmaxy]
+# blbcmax = [i - baseline for i in bcmax]
+# blgsmax = [i - baseline for i in gkmax]
+# blexmax = [i - baseline for i in exsmmax]
 
-# blmxy = [cmaxy[i] - opt[1] for i in range(len(bcmax))]
+optblmax = [bcmax[i] - optimalbaselinemax[1] for i in range(len(bcmax))]
+optblmin = [bcmin[i] - optimalbaselinemin[1] for i in range(len(bcmax))]
+
 
 # blcmaxy = [cmaxy[i] - opt[0] for i in range(len(bcmax))]
 #
@@ -39,11 +42,13 @@ blexmax = [i - baseline for i in exsmmax]
 # print len([i for i in range(1878, 2015)])
 # print len(blcmaxy)
 
-rawmax, = plt.plot([i for i in range(1878, 2015)], blmax, label="raw max")
-boxcarmax, = plt.plot([i for i in range(1882, 2014)], blbcmax, label="boxcar")
-gsmax, = plt.plot([i for i in range(1880, 2011)], blgsmax, label="gaussian")
-exmax, = plt.plot([i for i in range(1878, 2015)], blexmax, label="exponential")
-# plt.plot([i for i in range(1882, 2014)], blmxy)
+optmax, = plt.plot([i for i in range(1882, 2014)], optblmax, label="Max temps")
+optmin, = plt.plot([i for i in range(1882, 2014)], optblmin, label="Min temps")
+
+# rawmax, = plt.plot([i for i in range(1878, 2015)], blmax, label="raw max")
+# boxcarmax, = plt.plot([i for i in range(1882, 2014)], blbcmax, label="boxcar")
+# gsmax, = plt.plot([i for i in range(1880, 2011)], blgsmax, label="gaussian")
+# exmax, = plt.plot([i for i in range(1878, 2015)], blexmax, label="exponential")
 plt.plot([1878, 2015], [0, 0])
 
 # boxcarmax, = plt.plot([i for i in range(1882, 2014)], bcmax, label="boxcar")
@@ -53,7 +58,9 @@ plt.plot([1878, 2015], [0, 0])
 # exmax, = plt.plot([i for i in range(1878, 2015)], exsmmax, label="exponential")
 # exmin, = plt.plot([i for i in range(1878, 2015)], exsmmin, label="exponential")
 
-first_legend = plt.legend(handles=[rawmax, boxcarmax, gsmax, exmax], loc=2)
+# first_legend = plt.legend(handles=[rawmax, boxcarmax, gsmax, exmax], loc=2)
+
+plt.legend(handles=[optmax, optmin], loc=2)
 
 # Add the legend manually to the current Axes.
 # ax = plt.gca().add_artist(first_legend)
